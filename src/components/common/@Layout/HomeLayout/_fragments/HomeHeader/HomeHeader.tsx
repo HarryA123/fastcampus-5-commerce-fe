@@ -1,6 +1,7 @@
 import { Flex, IconButton, Image } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 
+import CartIcon from '@components/common/@Icons/System/Cart';
 import MenuIcon from '@components/common/@Icons/System/Menu';
 
 import { LAYOUT } from '@constants/layout';
@@ -12,7 +13,7 @@ interface HomeHeaderProps {
   variant?: HomeHeaderVariantType;
 }
 
-const HomeHeader = ({ variant = 'light' }: HomeHeaderProps) => {
+const HomeHeader = ({ variant = 'transparent' }: HomeHeaderProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const cssByVariant = HOME_HEADER_VARIANTS[variant];
@@ -31,16 +32,18 @@ const HomeHeader = ({ variant = 'light' }: HomeHeaderProps) => {
         h={LAYOUT.HEADER.HEIGHT}
         {...cssByVariant.header}
       >
-        <Image //
-          src="/images/header/logo.png"
-          w="74px"
-          h="42px"
-          cursor="pointer"
-        />
-        <Image src="/images/header/menu.png" w="24px" h="24px" />
         <IconButton //
           color={cssByVariant.pointColor}
           icon={<MenuIcon w="24px" h="24px" />}
+          onClick={onOpen}
+          cursor="pointer"
+          bg="transparent"
+          aria-label="btn-toggle-drawer"
+        />
+        <Image src="/images/logo_center.png" />
+        <IconButton //
+          color={cssByVariant.pointColor}
+          icon={<CartIcon w="24px" h="24px" />}
           onClick={onOpen}
           cursor="pointer"
           bg="transparent"
