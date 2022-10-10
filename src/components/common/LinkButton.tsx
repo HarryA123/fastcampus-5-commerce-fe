@@ -40,6 +40,7 @@ const LinkButton = ({
       <Button //
         as="a"
         target={target}
+        _hover={{ bg: 'primary.700' }}
         {...props}
       />
     </Link>
