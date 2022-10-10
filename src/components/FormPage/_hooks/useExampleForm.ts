@@ -6,13 +6,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 export type FormDataType = {
   username: string;
+  nickname: string;
   email: string;
   phone: string;
   gender: {
     label: string;
     value: string;
   };
-  fruit: string;
+  age: {
+    label: string;
+    value: string;
+  };
 };
 
 /**
@@ -27,14 +31,17 @@ export type FormDataType = {
  * @see https://yarnpkg.com/package/@hookform/resolvers#readme
  * */
 export const exampleFormSchema = yup.object().shape({
-  username: yup.string().required('해당 항목은 필수값 입니다.'),
+  username: yup.string().min(2, '최소 2자 이상 입력해주세요.'),
+  nickname: yup
+    .string()
+    .required('한글 1~5자, 영문 및 숫자 2~10자 사이로 입력해주세요.'),
   email: yup
     .string()
-    .required('해당 항목은 필수값 입니다.')
+    .required('이메일 주소를 정확하게 입력해주세요.')
     .email('올바르지 않은 이메일 입니다.'),
   phone: yup
     .string()
-    .required('해당 항목은 필수값 입니다.')
+    .required('정확한 핸드폰 번호를 입력해주세요.')
     .test(
       'isNumber',
       '숫자만 입력 가능합니다.',
@@ -45,7 +52,7 @@ export const exampleFormSchema = yup.object().shape({
   gender: yup.object().shape({
     value: yup.string().required('해당 항목은 필수값 입니다.'),
   }),
-  fruit: yup.string().required('해당 항목은 필수값 입니다.'),
+  age: yup.string().required('해당 항목은 필수값 입니다.'),
 });
 
 const useExampleForm = (options?: UseFormProps<FormDataType>) => {
