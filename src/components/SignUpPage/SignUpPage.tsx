@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Box, BoxProps, Flex, Image } from '@chakra-ui/react';
+import { Box, BoxProps, Flex, Input } from '@chakra-ui/react';
+
+import FormHelper from '@components/common/FormHelper';
 
 interface SignUpPageContentProps extends BoxProps {}
 
@@ -9,7 +11,7 @@ function SignUpPageContent({ ...basisProps }: SignUpPageContentProps) {
     <>
       <Flex {...basisProps} justifyContent="center" w="100%" h="100vh">
         <Box mt="100px" h="100px" bg="red">
-          signUp page
+          회원가입 완료!
         </Box>
       </Flex>
     </>
