@@ -19,7 +19,6 @@ import {
 
 import CheckLineRegularIcon from '@components/common/@Icons/System/CheckLineRegular';
 import CheckedLineIcon from '@components/common/@Icons/System/CheckedLine';
-import CheckedSolidIcon from '@components/common/@Icons/System/CheckedSolid';
 import FormHelper from '@components/common/FormHelper';
 import LinkButton from '@components/common/LinkButton';
 
@@ -171,7 +170,7 @@ const FormPageView = ({
                     alignItems="center"
                     h="50px"
                   >
-                    <Text color="gray.600" textStyle="sub">
+                    <Text as="ins" color="gray.600" textStyle="sub">
                       {item.title}
                     </Text>
                     <IconButton
@@ -187,26 +186,6 @@ const FormPageView = ({
             </Flex>
           </Box>
         </Box>
-
-        {/* <Controller
-          control={control}
-          name="fruit"
-          render={({ field: { onChange } }) => (
-            <FormHelper
-              mb="40px"
-              label="과일"
-              errorText={errors.fruit?.message}
-            >
-              <RadioGroup onChange={onChange}>
-                <Stack direction="row">
-                  <Radio value="apple">사과</Radio>
-                  <Radio value="banana">바나나</Radio>
-                  <Radio value="orange">오렌지</Radio>
-                </Stack>
-              </RadioGroup>
-            </FormHelper>
-          )}
-        /> */}
         <LinkButton
           href={{
             pathname: '/signUp/[slug]',
@@ -222,17 +201,6 @@ const FormPageView = ({
             회원가입 완료
           </Text>
         </LinkButton>
-        {/* <Button
-          w="100%"
-          h="50px"
-          borderRadius="full"
-          bg="primary.500"
-          type="submit"
-        >
-          <Text textStyle="lg" color="white">
-            회원가입 완료
-          </Text>
-        </Button> */}
       </Flex>
     </>
   );
