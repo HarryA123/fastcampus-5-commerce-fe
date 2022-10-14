@@ -23,7 +23,6 @@ const LinkButton = ({
   prefetch,
   locale,
   target,
-
   ...props
 }: LinkButtonProps) => {
   return (
@@ -41,6 +40,11 @@ const LinkButton = ({
         as="a"
         target={target}
         _hover={{ bg: 'primary.700' }}
+        w="100%"
+        h="50px"
+        borderRadius="full"
+        color="white"
+        fontSize="16px"
         {...props}
       />
     </Link>
