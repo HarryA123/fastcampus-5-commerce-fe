@@ -32,18 +32,8 @@ function SignUpCompletePageContent({ ...basisProps }: LoginPageContentProps) {
           boxSize="216px"
           src="/images/form/hands-clapping 1.png"
         ></Image>
-        <LinkButton
-          href="/main"
-          w="100%"
-          h="50px"
-          borderRadius="full"
-          bg="primary.500"
-          type="submit"
-          mb="30px"
-        >
-          <Text textStyle="lg" color="white">
-            시작하기
-          </Text>
+        <LinkButton href="/" bg="primary.500" mb="30px">
+          시작하기
         </LinkButton>
       </Flex>
     </>
