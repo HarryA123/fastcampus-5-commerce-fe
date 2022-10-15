@@ -44,6 +44,7 @@ const HomeHeaderDrawer = ({
               return (
                 <Link key={idx} href={m.link}>
                   <Flex
+                    cursor="pointer"
                     alignItems="center"
                     borderTop="1px"
                     borderColor="gray.400"
@@ -65,6 +66,7 @@ const HomeHeaderDrawer = ({
               bottom="0"
               gap="5px"
               alignItems="center"
+              cursor="pointer"
             >
               <ExitIcon boxSize="24px" />
               <Text textStyle="textLargeBold">로그아웃</Text>
