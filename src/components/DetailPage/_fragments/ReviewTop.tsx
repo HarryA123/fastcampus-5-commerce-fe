@@ -18,6 +18,7 @@ import {
 import ArrowDownIcon from '@components/common/@Icons/System/ArrowDown';
 import RatioStar from '@components/common/@Icons/System/RatioStar';
 import RatioStarHalf from '@components/common/@Icons/System/RatioStarHalf';
+import DropDown from '@components/common/DropDown';
 
 interface ProductCardProps extends BoxProps {}
 
@@ -42,48 +43,18 @@ function ReviewTop({ ...basisProps }: ProductCardProps) {
           </Highlight>
         </Text>
         <Flex gap="10px">
-          <Menu>
-            {({ isOpen }) => (
-              <>
-                <MenuButton
-                  bgColor="gray.200"
-                  borderRadius="5px"
-                  h="30px"
-                  isActive={isOpen}
-                  as={Button}
-                  rightIcon={<ArrowDownIcon />}
-                >
-                  최신순
-                </MenuButton>
-                <MenuList p={0} minW="0">
-                  <MenuItem value="오래된순">오래된순</MenuItem>
-                  <MenuItem value="최신순">최신순</MenuItem>
-                  <MenuItem value="인기순">인기순</MenuItem>
-                </MenuList>
-              </>
-            )}
-          </Menu>
-          <Menu>
-            {({ isOpen }) => (
-              <>
-                <MenuButton
-                  bgColor="gray.200"
-                  borderRadius="5px"
-                  h="30px"
-                  isActive={isOpen}
-                  as={Button}
-                  rightIcon={<ArrowDownIcon />}
-                >
-                  전체보기
-                </MenuButton>
-                <MenuList p={0} minW="0">
-                  <MenuItem value="오래된순">오래된순</MenuItem>
-                  <MenuItem value="최신순">최신순</MenuItem>
-                  <MenuItem value="인기순">인기순</MenuItem>
-                </MenuList>
-              </>
-            )}
-          </Menu>
+          <DropDown
+            listName="최신순"
+            list_1="오래된순"
+            list_2="최신순"
+            list_3="인기순"
+          />
+          <DropDown
+            listName="전체보기"
+            list_1="오래된순"
+            list_2="최신순"
+            list_3="인기순"
+          />
         </Flex>
       </Flex>
       <Flex w="100%" p="50px 16px 30px" gap="20px">
