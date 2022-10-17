@@ -16,12 +16,12 @@ import {
 
 import ArrowDownIcon from '@components/common/@Icons/System/ArrowDown';
 import ArrowUpIcon from '@components/common/@Icons/System/ArrowUp';
-// import ProductDetail from './_fragments/ProductDetail';
-import RatioStar from '@components/common/@Icons/System/RatioStar';
-import LinkButton from '@components/common/LinkButton';
 
+import PhotoReviewCard from './_fragments/PhotoReviewCard';
 import ProductDetail from './_fragments/ProductDetail';
+import ReviewCard from './_fragments/ReviewCard';
 import ReviewTop from './_fragments/ReviewTop';
+import SellerAnswer from './_fragments/SellerAnswer';
 
 interface DetailPageContentProps extends BoxProps {}
 
@@ -153,7 +153,7 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
         direction="column"
         id="container_3"
         w="375px"
-        h="100vh"
+        // h="100vh"
         // bg="pink.200"
       >
         <Flex
@@ -184,6 +184,9 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
           </Box>
         </Collapse>
         <ReviewTop />
+        <PhotoReviewCard />
+        <SellerAnswer />
+        <ReviewCard />
         {/* 주문 및 배송 안내 컴포넌트 자리 collapse 사용! */}
       </Flex>
       <Flex
