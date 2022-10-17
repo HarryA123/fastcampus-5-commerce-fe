@@ -43,12 +43,13 @@ function ProductCard({ ...basisProps }: ProductCardProps) {
             바스 & 샴푸 300ml
           </Highlight>
         </Text>
-        <Text textStyle="textLargeBold">
+        <Text textStyle="md">
           <Highlight
             query="27,000"
             styles={{
               py: '1',
               color: 'primary.500',
+              textStyles: 'textLargeBold',
             }}
           >
             27,000원
