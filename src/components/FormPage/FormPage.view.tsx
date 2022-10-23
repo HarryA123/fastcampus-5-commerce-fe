@@ -118,7 +118,7 @@ const FormPageView = ({
 
           <Controller
             control={control}
-            name="gender"
+            name="age"
             render={({ field: { onChange } }) => (
               <FormHelper label="연령대" errorText={errors.age?.value?.message}>
                 <Select
@@ -162,7 +162,7 @@ const FormPageView = ({
               />
             </Flex>
             <Flex direction="column" gap="10px" mt="20px">
-              {이용약관동의.map((item, idx) => {
+              {AGREE.map((item, idx) => {
                 return (
                   <Flex
                     key={idx}
@@ -191,15 +191,9 @@ const FormPageView = ({
             pathname: '/signUp/[slug]',
             query: { slug: 'complete' },
           }}
-          w="100%"
-          h="50px"
-          borderRadius="full"
           bg="primary.500"
-          type="submit"
         >
-          <Text textStyle="lg" color="white">
-            회원가입 완료
-          </Text>
+          회원가입 완료
         </LinkButton>
       </Flex>
     </>
@@ -208,7 +202,7 @@ const FormPageView = ({
 
 export default FormPageView;
 
-const 이용약관동의 = [
+const AGREE = [
   { title: '서비스 이용을 위한 필수약관 동의' },
   { title: '개인정보수집 및 이용, 제3자 제공 동의' },
   { title: '마케팅 정보 수신 및 맞춤형 광고 동의(선택)' },
