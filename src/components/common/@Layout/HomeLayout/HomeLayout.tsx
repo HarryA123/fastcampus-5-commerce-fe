@@ -1,10 +1,7 @@
 import React from 'react';
 
-import { Box, Container, ContainerProps } from '@chakra-ui/react';
-
-import { LAYOUT } from '@constants/layout';
-
 import HomeHeader from './_fragments/HomeHeader';
+import HomeFooter from './_fragments/HomeHeader/HomeFooter';
 
 interface HomeLayoutProps {
   header?: JSX.Element;
@@ -15,7 +12,7 @@ interface HomeLayoutProps {
 const HomeLayout = ({
   //
   header = <HomeHeader />,
-  footer,
+  footer = <HomeFooter />,
   content,
 }: HomeLayoutProps) => {
   return (
