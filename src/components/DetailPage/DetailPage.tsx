@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { Highlight } from '@chakra-ui/layout';
 import {
   Box,
   BoxProps,
@@ -15,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 import ArrowDownIcon from '@components/common/@Icons/System/ArrowDown';
+import ArrowRightIcon from '@components/common/@Icons/System/ArrowRight';
 import ArrowUpIcon from '@components/common/@Icons/System/ArrowUp';
 
 import PhotoReviewCard from './_fragments/PhotoReviewCard';
@@ -26,41 +25,34 @@ import SellerAnswer from './_fragments/SellerAnswer';
 interface DetailPageContentProps extends BoxProps {}
 
 function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
-  const [show, setShow] = useState(false);
-  const handleToggle = () => setShow(!show);
+  const [showDeliver, setShowDeliver] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
+  const handleDeliverToggle = () => setShowDeliver(!showDeliver);
+  const handleDetailToggle = () => setShowDetail(!showDetail);
   return (
     <Flex direction="column" mt="80px">
       <Flex
-        // justifyContent="center"
         id="container_1"
-        w="375px"
-        h="100vh"
-        // bg="blue"
-        m="0 auto"
+        h="calc(100vh-80px)"
         direction="column"
-        // border="1px solid red"
         pos="relative"
       >
         <Box overflow="hidden">
-          <Image m="0 auto" src="images/product_1.png"></Image>
+          <Image
+            m="auto"
+            transform="translateY(40px)"
+            src="images/product_1.png"
+          />
         </Box>
-        <ProductDetail pos="absolute" bottom="0" />
+        <ProductDetail />
       </Flex>
-      <Flex
-        m="0 auto"
-        direction="column"
-        id="container_2"
-        w="375px"
-        h="100vh"
-        bg="pink.400"
-      >
+      <Flex direction="column" id="container_2">
         <Flex
           h="80px"
           gap="20px"
           w="100%"
           justifyContent="center"
           alignItems="center"
-          bg="red"
         >
           {INNER_MENU.map((item, idx) => {
             return (
@@ -70,107 +62,38 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
             );
           })}
         </Flex>
-        <Flex
-          // justifyContent="center"
-          direction="column"
-          mt="0px"
-          w="100%"
-          // h="700px"
-          bg="yellow"
+        <Collapse startingHeight={475} in={showDetail}>
+          <Image m="0 auto" src="images/detail/detail_01.png" />
+        </Collapse>
+        <Button
+          w="auto"
+          h="50px"
+          borderRadius="full"
+          border="1px solid black"
+          mx="16px"
+          mb="60px"
+          onClick={handleDetailToggle}
         >
-          <Flex
-            justifyContent="center"
-            direction="column"
-            bg="green"
-            gap="10px"
-            mt="50px"
-            py="50px"
-          >
-            <Text
-              // pt="50px"
-              color="primary.500"
-              textStyle="sm"
-              textAlign="center"
-            >
-              KEY POINT
-            </Text>
-            <Text textStyle="xl" textAlign="center">
-              <Highlight
-                query="우리 아이를 위한 고보습 로션"
-                styles={{
-                  py: '1',
-                  fontWeight: 'black',
-                }}
-              >
-                순하고 마일드한 안심 처방으로 피부가 민감하고 연약한 우리 아이를
-                위한 고보습 로션
-              </Highlight>
-            </Text>
-          </Flex>
-          <Flex direction="column" gap="10px" bg="green.400">
-            <Text m="0 auto" textStyle="md" textAlign="center" w="309px">
-              <Highlight
-                query={['쌀추출물 적용', '·', '천연유래성분 89%']}
-                styles={{
-                  py: '1',
-                  textStyle: 'lg',
-                }}
-              >
-                · 천연유래성분 89% 이상 함유로 마일드하고 자극없는 사용감을
-                부여하고 쌀추출물 적용으로 수분공급 및 피부결을 부드럽게
-                케어합니다.
-              </Highlight>
-            </Text>
-            <Text m="0 auto" textStyle="md" textAlign="center" w="323px">
-              <Highlight
-                query={['·', '(COSMOS인증)']}
-                styles={{
-                  py: '1',
-                  textStyle: 'lg',
-                }}
-              >
-                · 천연 올리브(COSMOS인증) & 팜 유래 유화제 적용 - 풍부하고 밀도
-                있는 영양감과 뛰어난 보습감, 밀착력을 부여합니다.
-              </Highlight>
-            </Text>
-            <Text m="0 auto" textStyle="md" textAlign="center" w="311px">
-              <Highlight
-                query={['·', 'Multi lamellar 유화']}
-                styles={{
-                  py: '1',
-                  textStyle: 'lg',
-                }}
-              >
-                · 피부와 유사한 Multi lamellar 유화를 통해 보습 밀착감을 높이고
-                리치한 사용감을 구현했습니다.
-              </Highlight>
-            </Text>
-          </Flex>
-        </Flex>
+          <Text textStyle="lg">상세정보 펼쳐보기</Text>
+          {!showDetail ? <ArrowDownIcon boxSize="18px" /> : <ArrowUpIcon />}
+        </Button>
       </Flex>
-      <Flex
-        m="0 auto"
-        direction="column"
-        id="container_3"
-        w="375px"
-        // h="100vh"
-        // bg="pink.200"
-      >
+      <Flex direction="column" id="container_3">
         <Flex
           textStyle="lg"
-          w="343px"
+          w="100%"
+          px="16px"
           h="60px"
-          onClick={handleToggle}
+          onClick={handleDeliverToggle}
           alignItems="center"
           justifyContent="space-between"
-          m="0 auto"
           borderBottom="1px"
           borderBottomColor="gray.200"
         >
-          주문 및 배송 안내{' '}
-          {show ? <ArrowDownIcon boxSize="18px" /> : <ArrowUpIcon />}
+          <Text textStyle="lg">주문 및 배송 안내</Text>
+          {!showDeliver ? <ArrowDownIcon boxSize="18px" /> : <ArrowUpIcon />}
         </Flex>
-        <Collapse in={show}>
+        <Collapse in={showDeliver}>
           <Box w="343px" m="0 auto" pb="20px">
             <Text textStyle="lg" p="14px 0 20px">
               [주문 및 배송 안내]
@@ -187,20 +110,28 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
         <PhotoReviewCard />
         <SellerAnswer />
         <ReviewCard />
-        {/* 주문 및 배송 안내 컴포넌트 자리 collapse 사용! */}
-      </Flex>
-      <Flex
-        m="0 auto"
-        direction="column"
-        id="container_4"
-        w="375px"
-        h="100vh"
-        bg="pink.100"
-      >
-        {/* 리뷰 자리 */}
+        <PhotoReviewCard />
+        <SellerAnswer />
+        <ReviewCard />
+        <ReviewCard />
+        <Flex
+          gap="30px"
+          alignItems="center"
+          justifyContent="center"
+          h="30px"
+          p="50px 0 80px"
+        >
+          {[1, 2, 3, 4, 5].map((item, idx) => {
+            return (
+              <Text textStyle="lg" color="black" key={idx}>
+                {item}
+              </Text>
+            );
+          })}
+          <ArrowRightIcon />
+        </Flex>
       </Flex>
     </Flex>
-    // </Flex>
   );
 }
 
