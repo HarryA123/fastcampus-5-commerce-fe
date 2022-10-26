@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
 
+import { Highlight } from '@chakra-ui/layout';
 import {
   Box,
   BoxProps,
-  Button,
-  Center,
+  Button, // Center,
   Collapse,
+  Drawer,
+  DrawerBody, // DrawerCloseButton,
+  DrawerContent, // DrawerFooter,
+  // DrawerHeader,
+  DrawerOverlay,
   Flex,
-  IconButton,
+  HStack, // IconButton,
   Image,
+  Input,
   Text,
+  useDisclosure,
+  useNumberInput,
 } from '@chakra-ui/react';
 
 import ArrowDownIcon from '@components/common/@Icons/System/ArrowDown';
 import ArrowRightIcon from '@components/common/@Icons/System/ArrowRight';
 import ArrowUpIcon from '@components/common/@Icons/System/ArrowUp';
+import LinkButton from '@components/common/LinkButton';
 
+// import BuyorCartDrawer from './_fragments/BuyorCartDrawer';
 import PhotoReviewCard from './_fragments/PhotoReviewCard';
 import ProductDetail from './_fragments/ProductDetail';
 import ReviewCard from './_fragments/ReviewCard';
@@ -29,6 +39,20 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
   const [showDetail, setShowDetail] = useState(false);
   const handleDeliverToggle = () => setShowDeliver(!showDeliver);
   const handleDetailToggle = () => setShowDetail(!showDetail);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
+    useNumberInput({
+      step: 1,
+      defaultValue: 1,
+      min: 1,
+      max: 100,
+      precision: 0,
+    });
+
+  const inc = getIncrementButtonProps();
+  const dec = getDecrementButtonProps();
+  const input = getInputProps();
+
   return (
     <Flex direction="column" mt="80px">
       <Flex
@@ -44,7 +68,69 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
             src="images/product_1.png"
           />
         </Box>
-        <ProductDetail />
+        <ProductDetail onClick={onOpen} />
+        {/* <BuyorCartDrawer onClose={onClose} isOpen={isOpen} /> */}
+        <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent h="280px" borderTopRadius="20px">
+            <DrawerBody p="20px 16px">
+              <Flex direction="column">
+                <Flex direction="column" bg="gray.200" p="10px" gap="4px">
+                  <Text>바스&샴푸</Text>
+                  <Flex justifyContent="space-between" alignItems="center">
+                    <HStack maxW="140px">
+                      <Button {...dec}>-</Button>
+                      <Input {...input} h="40px" />
+                      <Button {...inc}>+</Button>
+                    </HStack>
+                    <Text color="gray.600" textStyle="lg">
+                      27,000원
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex justifyContent="space-between" my="5px">
+                  <Text textStyle="md">
+                    <Highlight
+                      query="1"
+                      styles={{
+                        py: '1',
+                        color: 'primary.500',
+                        textStyles: 'textLargeBold',
+                      }}
+                    >
+                      총 수량 1 개
+                    </Highlight>
+                  </Text>
+                  <Text textStyle="">
+                    <Highlight
+                      query="27,000원"
+                      styles={{
+                        py: '1',
+                        // color: 'primary.500',
+                        textStyle: 'lg',
+                      }}
+                    >
+                      합계 27,000원
+                    </Highlight>
+                  </Text>
+                </Flex>
+              </Flex>
+              <Flex gap="13px" p="10px 0 30px">
+                <LinkButton
+                  href="cart"
+                  color="primary.500"
+                  border="1px"
+                  borderColor="primary.500"
+                >
+                  장바구니
+                </LinkButton>
+                <LinkButton href="buy" bg="primary.500">
+                  바로구매
+                </LinkButton>
+              </Flex>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Flex>
       <Flex direction="column" id="container_2">
         <Flex
