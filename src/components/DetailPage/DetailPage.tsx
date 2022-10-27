@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { Highlight } from '@chakra-ui/layout';
 import {
   Box,
   BoxProps,
@@ -12,7 +11,8 @@ import {
   // DrawerHeader,
   DrawerOverlay,
   Flex,
-  HStack, // IconButton,
+  HStack,
+  IconButton, // IconButton,
   Image,
   Input,
   Text,
@@ -26,7 +26,9 @@ import ArrowUpIcon from '@components/common/@Icons/System/ArrowUp';
 import LinkButton from '@components/common/LinkButton';
 
 // import BuyorCartDrawer from './_fragments/BuyorCartDrawer';
+import MinusIcon from './_fragments/Minus';
 import PhotoReviewCard from './_fragments/PhotoReviewCard';
+import PlusIcon from './_fragments/Plus';
 import ProductDetail from './_fragments/ProductDetail';
 import ReviewCard from './_fragments/ReviewCard';
 import ReviewTop from './_fragments/ReviewTop';
@@ -40,14 +42,18 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
   const handleDeliverToggle = () => setShowDeliver(!showDeliver);
   const handleDetailToggle = () => setShowDetail(!showDetail);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
-    useNumberInput({
-      step: 1,
-      defaultValue: 1,
-      min: 1,
-      max: 100,
-      precision: 0,
-    });
+  const {
+    getInputProps,
+    getIncrementButtonProps,
+    getDecrementButtonProps,
+    valueAsNumber,
+  } = useNumberInput({
+    step: 1,
+    defaultValue: 1,
+    min: 1,
+    max: 100,
+    precision: 0,
+  });
 
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
@@ -69,50 +75,76 @@ function DetailPageContent({ ...basisProps }: DetailPageContentProps) {
           />
         </Box>
         <ProductDetail onClick={onOpen} />
-        {/* <BuyorCartDrawer onClose={onClose} isOpen={isOpen} /> */}
         <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
           <DrawerOverlay />
-          <DrawerContent h="280px" borderTopRadius="20px">
+          <DrawerContent h="250px" borderTopRadius="20px">
             <DrawerBody p="20px 16px">
               <Flex direction="column">
                 <Flex direction="column" bg="gray.200" p="10px" gap="4px">
-                  <Text>바스&샴푸</Text>
+                  <Text color="gray.600">바스&샴푸</Text>
                   <Flex justifyContent="space-between" alignItems="center">
-                    <HStack maxW="140px">
-                      <Button {...dec}>-</Button>
-                      <Input {...input} h="40px" />
-                      <Button {...inc}>+</Button>
-                    </HStack>
+                    <Flex>
+                      <IconButton
+                        {...dec}
+                        variant="outline"
+                        bg="white"
+                        borderColor="gray.300"
+                        borderRightRadius="0px"
+                        aria-label="Minus"
+                        size="25px"
+                        icon={<MinusIcon color="gray.800" />}
+                      />
+                      <Input
+                        {...input}
+                        textStyle="sub"
+                        textAlign="center"
+                        p="0"
+                        size="25px"
+                        w="25px"
+                        borderY="1px"
+                        bg="white"
+                        _focus={{
+                          boxShadow: 'none',
+                          borderColor: 'transparent',
+                        }}
+                        borderTopColor="gray.300"
+                        borderBottomColor="gray.300"
+                      />
+                      <IconButton
+                        {...inc}
+                        variant="outline"
+                        borderLeftRadius="0px"
+                        aria-label="Plus"
+                        bg="white"
+                        borderColor="gray.300"
+                        size="25px"
+                        icon={<PlusIcon color="gray.800" />}
+                      />
+                    </Flex>
                     <Text color="gray.600" textStyle="lg">
-                      27,000원
+                      {(27000 * valueAsNumber).toLocaleString('en-US')} 원
                     </Text>
                   </Flex>
                 </Flex>
                 <Flex justifyContent="space-between" my="5px">
-                  <Text textStyle="md">
-                    <Highlight
-                      query="1"
-                      styles={{
-                        py: '1',
-                        color: 'primary.500',
-                        textStyles: 'textLargeBold',
-                      }}
+                  <Flex gap="4px" alignItems="center">
+                    <Text textStyle="md">총 수량 </Text>
+                    <Text
+                      textStyle="lg"
+                      color="primary.500"
+                      display="inline-block"
                     >
-                      총 수량 1 개
-                    </Highlight>
-                  </Text>
-                  <Text textStyle="">
-                    <Highlight
-                      query="27,000원"
-                      styles={{
-                        py: '1',
-                        // color: 'primary.500',
-                        textStyle: 'lg',
-                      }}
-                    >
-                      합계 27,000원
-                    </Highlight>
-                  </Text>
+                      {valueAsNumber}
+                    </Text>
+                    <Text>개</Text>
+                  </Flex>
+                  <Flex gap="4px" alignItems="center">
+                    <Text textStyle="md">합계</Text>
+                    <Text color="primary.500" display="inline-block">
+                      {(27000 * valueAsNumber).toLocaleString('en-US')}
+                    </Text>
+                    <Text>원</Text>
+                  </Flex>
                 </Flex>
               </Flex>
               <Flex gap="13px" p="10px 0 30px">
