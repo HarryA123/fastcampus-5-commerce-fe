@@ -1,15 +1,41 @@
 import Link from 'next/link';
 import React from 'react';
 
+import { CLIENT_RENEG_LIMIT } from 'tls';
+
 import { Highlight } from '@chakra-ui/layout';
 import { Box, BoxProps, Flex, Image, Text } from '@chakra-ui/react';
+
+import { useGetProductQuery } from '@apis/Product/ProductApi.query';
 
 import RatioStar from '@components/common/@Icons/System/RatioStar';
 import LinkButton from '@components/common/LinkButton';
 
-interface ProductCardProps extends BoxProps {}
+interface ProductCardProps extends BoxProps {
+  name: string;
+  capacity: number;
+  price: number;
+  description: string;
+  reviewCount: number;
+  avgRate: number;
+  thumbnail: string;
+  tag: JSX.Element[] | Array<string>;
+}
 
-function ProductCard({ ...basisProps }: ProductCardProps) {
+function ProductCard({
+  tag,
+  avgRate,
+  reviewCount,
+  description,
+  capacity,
+  thumbnail,
+  price,
+  name,
+}: ProductCardProps) {
+  const { data, isLoading } = useGetProductQuery();
+  console.log(data);
+  console.log(tag);
+
   return (
     <Flex
       w="343px"
@@ -30,40 +56,29 @@ function ProductCard({ ...basisProps }: ProductCardProps) {
         </Box>
       </Link>
       <Flex p="30px 16px" direction="column">
-        <Text fontWeight="bold" textStyle="lg" mb="10px">
-          <Highlight
-            query="300ml"
-            styles={{
-              py: '1',
-              fontWeight: 'normal',
-              color: 'gray.700',
-              textStyles: 'md',
-            }}
-          >
-            바스 & 샴푸 300ml
-          </Highlight>
-        </Text>
-        <Text textStyle="md">
-          <Highlight
-            query="27,000"
-            styles={{
-              py: '1',
-              color: 'primary.500',
-              textStyles: 'textLargeBold',
-            }}
-          >
-            27,000원
-          </Highlight>
-        </Text>
+        <Flex mb="10px" gap="5px" alignItems="center">
+          <Text fontWeight="bold" textStyle="lg">
+            {name}
+          </Text>
+          <Text fontWeight="normal" color="gray.700">
+            {capacity}ml
+          </Text>
+        </Flex>
+        <Flex alignItems="center">
+          <Text color="primary.500" textStyle="textLargeBold">
+            {price?.toLocaleString('en-US')}
+          </Text>
+          <Text textStyle="textLarge">원</Text>
+        </Flex>
         <Flex alignItems="center">
           <RatioStar />
-          <Text textStyle="lg">4.3</Text>
+          <Text textStyle="lg">{avgRate}</Text>
           <Text ml="3px" textStyle="md" color="gray.700">
-            (리뷰 125개)
+            (리뷰 {reviewCount}개)
           </Text>
         </Flex>
         <Text textStyle="md" color="gray.700" p="25px 0 20px">
-          #올인원 #올인원 #올인원 #올인원
+          {tag}
         </Text>
         <Flex gap="20px">
           <LinkButton href="/buy" bg="primary.500">
