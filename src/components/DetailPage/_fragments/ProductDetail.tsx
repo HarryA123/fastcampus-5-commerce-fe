@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Highlight } from '@chakra-ui/layout';
-import { Box, BoxProps, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, BoxProps, Button, Flex, Image, Text } from '@chakra-ui/react';
 
 import RatioStar from '@components/common/@Icons/System/RatioStar';
 import LinkButton from '@components/common/LinkButton';
@@ -12,11 +12,14 @@ function ProductDetail({ ...basisProps }: ProductCardProps) {
   return (
     <>
       <Flex
-        {...basisProps}
         borderTopRadius="20px"
         direction="column"
-        border="1px solid gray"
+        // border="1px solid gray"
         bg="white"
+        // dropShadow="md"
+        // boxShadow="lg"
+        // filter="black"
+        {...basisProps}
       >
         <Box
           w="50px"
@@ -74,18 +77,32 @@ function ProductDetail({ ...basisProps }: ProductCardProps) {
             </Text>
           </Flex>
           <Flex direction="column" gap="10px" p="6px 0 4px">
-            <LinkButton href="/buy" bg="primary.500">
-              바로 구매
-            </LinkButton>
-            <LinkButton
-              href="/cart"
-              border="1px"
-              color="primary.500"
-              borderColor="primary.500"
+            <Button
               _hover={{ bg: 'gray.300' }}
+              w="100%"
+              h="50px"
+              borderRadius="full"
+              color="primary.500"
+              fontSize="16px"
+              border="1px"
+              bg="white"
+              borderColor="primary.500"
             >
               장바구니
-            </LinkButton>
+            </Button>
+            <Button
+              as="a"
+              _hover={{ bg: 'primary.700' }}
+              w="100%"
+              h="50px"
+              borderRadius="full"
+              color="white"
+              fontSize="16px"
+              cursor="pointer"
+              bg="primary.500"
+            >
+              바로 구매
+            </Button>
           </Flex>
         </Flex>
       </Flex>
