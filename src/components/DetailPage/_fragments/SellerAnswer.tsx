@@ -37,10 +37,9 @@ function SellerAnswer({ ...basisProps }: PhotoReviewCardProps) {
           <Flex direction="column">
             <Text>감사해요!</Text>
           </Flex>
-          <Divider w="50px" />
         </Flex>
       </Flex>
-      <Box m="auto" w="343px" h="1px" bg="gray.200" />
+      <Box mx="16px" h="1px" bg="gray.200" />
     </>
   );
 }

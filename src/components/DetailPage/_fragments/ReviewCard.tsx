@@ -57,7 +57,7 @@ function ReviewCard({ ...basisProps }: PhotoReviewCardProps) {
           <Flex gap="10px" mt="10px"></Flex>
         </Flex>
       </Flex>
-      <Box m="auto" w="343px" h="1px" bg="gray.200" />
+      <Box mx="16px" h="1px" bg="gray.200" />
     </>
   );
 }

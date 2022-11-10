@@ -32,9 +32,7 @@ function ProductCard({
   price,
   name,
 }: ProductCardProps) {
-  const { data, isLoading } = useGetProductQuery();
-  console.log(data);
-  console.log(tag);
+  const { data } = useGetProductQuery();
 
   return (
     <Flex

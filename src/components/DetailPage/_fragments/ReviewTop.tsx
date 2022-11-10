@@ -57,7 +57,7 @@ function ReviewTop({ ...basisProps }: ProductCardProps) {
           />
         </Flex>
       </Flex>
-      <Flex w="100%" p="50px 16px 30px" gap="20px">
+      <Flex w="100%" p="50px 16px 30px" gap="20px" justifyContent="center">
         <Flex gap="9px" alignItems="center">
           <Flex
             alignItems="center"
