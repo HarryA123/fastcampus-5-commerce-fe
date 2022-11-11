@@ -24,6 +24,7 @@
     "clean-up": "node src/scripts/remove-unnecessary.js"
   },
   "dependencies": {
+    "@chakra-ui/layout": "^2.1.8",
     "@chakra-ui/react": "^2.1.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
@@ -102,10 +103,5 @@
     "npm": ">= 7.10.0",
     "yarn": ">= 1.22.17"
   },
-  "os": [
-    "darwin",
-    "win64",
-    "linux"
-  ],
   "engineStrict": true
 }
